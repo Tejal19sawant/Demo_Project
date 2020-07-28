@@ -1,0 +1,101 @@
+.login100-form-title {
+    font-family: Raleway-Medium;
+    font-size: 30px;
+    color: #555555;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-bottom: 32px;
+    padding-top: 32px;
+}
+
+.wrap-login100 {
+    /* width: 560px; */
+    background: #fff;
+    border-radius: 10px;
+    /* position: relative; */
+}
+
+.body_login{
+    background-color: #ebebeb;
+}
+
+.login_adminbtn{
+    height: 55px;
+    min-width: 150px;
+    background-color: #57b846 !important;
+    border-color: #57b846 !important;
+}
+
+.login_adminbtn:hover{
+    background-color: #333333!important;
+    border-color: #333333 !important;
+}
+
+.fogrtpwd-link{
+    font-size: 13px !important;
+}
+
+.remember_label{
+    font-size: 13px !important;
+
+    margin-right: 58px;
+}
+
+.remember_chkbx{
+    margin-top: 10px !important;
+}
+
+.register_link{
+    border: 1px solid;
+    border-radius: 5px;
+    text-align: center;
+    height: 53px;
+    padding-top: 15px !important;
+    background-color: #333333;
+    border-color: #333333;
+    color: white;
+}
+
+.register_link:hover{
+    background-color: #57b846 ;
+    border-color: #57b846 ;
+    color: white;
+}
+
+.mynav{
+    padding: 0rem !important;
+}
+
+.reg_adminbtn{
+    height: 55px;
+    min-width: 150px;
+    background-color: #57b846 !important;
+    border-color: #57b846 !important;
+}
+
+.reg_adminbtn:hover{
+    background-color: #333333!important;
+    border-color: #333333 !important;
+}
+
+.login_registr_link{
+    display: contents !important;
+}
+.registr_or{
+    padding-top: 15px;
+    padding-right: 23px;
+}
+
+
+.view_prodattr_row_div{
+    margin-top: 25px;
+}
+
+.prodattr_frm_search{
+    margin-top: 25px;
+    margin-left: 15px;
+}
+  
