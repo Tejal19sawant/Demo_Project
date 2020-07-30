@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-md-9">
-                <div class="card"><?php print_r($category);?>
+                <div class="card"><?php //print_r($category);?>
                     <div class="card-header">Edit category #{{ $category->id }}</div>
                     <div class="card-body">
                         <a href="{{ url('/admin/category') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>

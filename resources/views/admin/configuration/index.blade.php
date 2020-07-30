@@ -5,7 +5,7 @@
         <div class="row">
             
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Configuration</div>
                     <div class="card-body">
@@ -20,7 +20,7 @@
                         </a>
                     @endrole
 
-                        <form method="GET" action="{{ url('/admin/configuration') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <!-- <form method="GET" action="{{ url('/admin/configuration') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -29,7 +29,7 @@
                                     </button>
                                 </span>
                             </div>
-                        </form>
+                        </form> -->
 
                         <br/>
                         <br/>

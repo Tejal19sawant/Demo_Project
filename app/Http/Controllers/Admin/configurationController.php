@@ -55,7 +55,7 @@ class configurationController extends Controller
     {
         $validator = $request->validate(
             [
-                'constant_name' => 'required|min:4|regex:/^([a-zA-Z]+\s)*[a-zA-Z]+$/|max:255',
+                'constant_name' => 'required|min:4|regex:/^([a-zA-Z. -]+\s)*[a-zA-Z. -]+$/|max:255',
                 'constant_value' => 'required|min:4|max:255',
             ]
         );

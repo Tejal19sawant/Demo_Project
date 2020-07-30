@@ -3,6 +3,17 @@
     <input class="form-control" name="category_name" type="text" id="category_name" value="{{ isset($category->category_name) ? $category->category_name : old('category_name')}}" >
     {!! $errors->first('category_name', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>
+<div class="form-group {{ $errors->has('parent_id') ? 'has-error' : ''}}">
+    <label for="parent_id" class="control-label">{{ 'Parent Category' }}</label>
+    <select name="parent_id" class="form-control" id="parent_id" >
+   
+        <option value="0" >Parent Category</option>
+        @foreach($level as $lev)
+        <option value="{{$lev->id}}" >{{$lev->category_name}}</option>
+        @endforeach
+</select>
+    {!! $errors->first('parent_id', '<p class="help-block" style="color:red;">:message</p>') !!}
+</div>
 <div class="form-group {{ $errors->has('category_description') ? 'has-error' : ''}}">
     <label for="category_description" class="control-label">{{ 'Category Description' }}</label>
     <textarea class="form-control" rows="5" name="category_description" type="textarea" id="category_description" >{{ isset($category->category_description) ? $category->category_description : old('category_description')}}</textarea>

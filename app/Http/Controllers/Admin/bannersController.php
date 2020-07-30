@@ -58,14 +58,14 @@ class bannersController extends Controller
         
         $request->validate(
             [
-                'name' => 'required|min:4|regex:/^([a-zA-Z]+\s)*[a-zA-Z]+$/|max:255',
+                'name' => 'required|min:4|regex:/^([a-zA-Z. -]+\s)*[a-zA-Z. -]+$/|max:255',
                 'textstyle' => 'required|min:4|max:255',
                 'sortorder' => 'required|min:4|max:255',
                 'bannerimage' => 'required',
                 //'category_description' => 'required|min:8|max:255',
             ]
         );
-        exit();
+        //exit();
 
         $requestData = $request->all();
                 if ($request->hasFile('bannerimage')) {

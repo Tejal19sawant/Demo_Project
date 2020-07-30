@@ -25,7 +25,12 @@ class category extends Model
      *
      * @var array
      */
-    protected $fillable = ['category_name', 'category_description', 'status'];
+    protected $fillable = ['category_name','parent_id', 'category_description', 'status'];
 
+
+    public function categories()
+    {
+        return $this->hasmany('App\category','parent_id');
+    }
     
 }

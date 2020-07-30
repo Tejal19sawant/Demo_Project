@@ -9,6 +9,10 @@ use App\user;
 use Illuminate\Http\Request;
 use App\Page;
 
+
+use Illuminate\Database\Eloquent\Model;
+use Kodeine\Acl\Models\Eloquent\Role;
+
 class usersController extends Controller
 {
     /**
@@ -26,7 +30,7 @@ class usersController extends Controller
         $keyword = $request->get('search');
         $perPage = 10;
 
-        if (!empty($keyword)) {
+        if (!empty($keyword)) { 
             $users = user::where('name', 'LIKE', "%$keyword%")
                 ->orWhere('lastname', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
@@ -39,7 +43,10 @@ class usersController extends Controller
             $users = user::latest()->paginate($perPage);
         }
 
-        return view('admin.users.index', compact('users'));
+        $role = Role::all();
+        //print_r($role);
+
+        return view('admin.users.index', compact('users','role'));
     }
 
     /**
@@ -49,7 +56,10 @@ class usersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $role = Role::all();
+        //print_r($role);
+
+        return view('admin.users.create',compact('role'));
     }
 
     /**
@@ -116,8 +126,11 @@ class usersController extends Controller
     public function edit($id)
     {
         $user = user::findOrFail($id);
+        //print_r($user); exit();
+        $role = Role::all();
+        //print_r($role);
 
-        return view('admin.users.edit', compact('user'));
+        return view('admin.users.edit', compact('user','role'));
     }
 
     /**

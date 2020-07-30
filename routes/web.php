@@ -13,16 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
+Auth::routes();
+
+/***********ADMIN SECTION LINK STARTS HERE****************/
 Route::get('/', function () {
     //return view('welcome');
     return view('auth/login');
 });
-
-
-Route::get('/home_website','Website\HomeController@index');
-Route::get('/products','Website\HomeController@products');
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -45,3 +45,13 @@ Route::post('/admin/product/edit-attributes/{id?}', 'Admin\\productController@ed
 /**********Product Management ends here**********/
 
 Route::resource('admin/banners', 'Admin\\bannersController');
+/***********ADMIN SECTION LINK ENDS HERE****************/
+
+
+/***********WEBSITE SECTION LINK STARTS HERE****************/
+
+Route::get('/index','Website\HomeController@index');
+Route::get('/products','Website\ProductController@products');
+Route::get('/products/{id}','Website\ProductController@product_details');
+
+/************WEBSITE SECTION LINK ENDS HERE***********************/

@@ -4,7 +4,7 @@
     {!! $errors->first('name', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('textstyle') ? 'has-error' : ''}}">
-    <label for="textstyle" class="control-label">{{ 'Textstyle' }}</label>
+    <label for="textstyle" class="control-label">{{ 'Text Style' }}</label>
     <input class="form-control" name="textstyle" type="text" id="textstyle" value="{{ isset($banner->textstyle) ? $banner->textstyle : old('textstyle')}}" >
     {!! $errors->first('textstyle', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>
@@ -19,12 +19,12 @@
     {!! $errors->first('link', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('sortorder') ? 'has-error' : ''}}">
-    <label for="sortorder" class="control-label">{{ 'Sortorder' }}</label>
+    <label for="sortorder" class="control-label">{{ 'Sort Order' }}</label>
     <input class="form-control" name="sortorder" type="text" id="sortorder" value="{{ isset($banner->sortorder) ? $banner->sortorder : old('sortorder')}}" >
     {!! $errors->first('sortorder', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('bannerimage') ? 'has-error' : ''}}">
-    <label for="bannerimage" class="control-label">{{ 'Bannerimage' }}</label>
+    <label for="bannerimage" class="control-label">{{ 'Banner Image' }}</label>
     <input class="form-control" name="bannerimage" type="file" id="bannerimage" value="{{ isset($banner->bannerimage) ? $banner->bannerimage : ''}}" >
     {!! $errors->first('bannerimage', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>

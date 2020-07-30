@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\category;
 use App\product;
+use App\product_image;
 
 class HomeController extends Controller
 {
@@ -18,11 +19,5 @@ class HomeController extends Controller
         return view('website/home',compact('category'));
     }
 
-    public function products()
-    {
-        $category = category::where('status','1')->get();
-        $product_detls = product::with('attributes')->get();
-        //print_r($product_detls);
-        return view('website/products',compact('category','product_detls'));
-    }
+    
 }

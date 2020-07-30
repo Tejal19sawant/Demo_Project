@@ -52,11 +52,11 @@ class productController extends Controller
         {   
             $request->validate(
                 [
-                    'product_name' => 'required|min:4|regex:/^([a-zA-Z]+\s)*[a-zA-Z]+$/|max:255',
+                    'product_name' => 'required|min:4|regex:/^([a-zA-Z. -]+\s)*[a-zA-Z. -]+$/|max:255',
                     'product_code' => 'required|min:4|max:255',
-                    'product_color' => 'required|min:4|regex:/^([a-zA-Z]+\s)*[a-zA-Z]+$/|max:255',
+                    'product_color' => 'required|min:4|regex:/^([a-zA-Z. -]+\s)*[a-zA-Z. -]+$/|max:255',
                     'product_description' => 'required|min:4|max:255',
-                    'product_price' => 'required|min:4|regex:/^[0-9]*$/|max:255',
+                    'product_price' => 'required|min:2|regex:/^[0-9]*$/|max:255',
                     'image' => 'required',
                 ]
             );

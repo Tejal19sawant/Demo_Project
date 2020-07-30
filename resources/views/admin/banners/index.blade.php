@@ -5,7 +5,7 @@
         <div class="row">
             
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Banners</div>
                     <div class="card-body">
@@ -13,7 +13,7 @@
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/admin/banners') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <!-- <form method="GET" action="{{ url('/admin/banners') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -22,7 +22,7 @@
                                     </button>
                                 </span>
                             </div>
-                        </form>
+                        </form> -->
 
                         <br/>
                         <br/>
@@ -30,14 +30,22 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Sr No.</th><th>Name</th><th>Textstyle</th><th>Content</th><th>Actions</th>
+                                        <th>Sr No.</th>
+                                        <th>Name</th>
+                                        <th>Textstyle</th>
+                                        <th>Content</th>
+                                        <th>Image</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($banners as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td><td>{{ $item->textstyle }}</td><td>{{ $item->content }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->textstyle }}</td>
+                                        <td>{{ $item->content }}</td>
+                                        <td><img src="{{ asset('storage/'.$item->bannerimage )}}" alt="Not Available" style="width: 400px;"></td>
                                         <td>
                                             <a href="{{ url('/admin/banners/' . $item->id) }}" title="View banner"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/banners/' . $item->id . '/edit') }}" title="Edit banner"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

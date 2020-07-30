@@ -5,7 +5,7 @@
         <div class="row">
            
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Product</div>
                     <div class="card-body">
@@ -18,7 +18,7 @@
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
                    
-                        <form method="GET" action="{{ url('/admin/category') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        <!-- <form method="GET" action="{{ url('/admin/category') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -27,7 +27,7 @@
                                     </button>
                                 </span>
                             </div>
-                        </form>
+                        </form> -->
 
                         <br/>
                         <br/>
@@ -35,7 +35,14 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Sr No.</th><th>Product Name</th><th>Product Code</th><th>Product Colour</th><th>Product Description</th><th>Product Price</th><th>Status</th><th>Actions</th>
+                                        <th>Sr No.</th>
+                                        <th>Product Name</th>
+                                        <th>Product Code</th>
+                                        <th>Product Colour</th>
+                                        <th>Product Description</th>
+                                        <th>Product Price</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>

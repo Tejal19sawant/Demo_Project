@@ -30,6 +30,8 @@ class categoryController extends Controller
             $category = category::latest()->paginate($perPage);
         }
 
+        
+
         return view('admin.category.index', compact('category'));
     }
 
@@ -40,7 +42,10 @@ class categoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        $level = category::where(['parent_id'=>0])->get();
+        //print_r($level);
+        //exit(); 
+        return view('admin.category.create',compact('level'));
     }
 
     /**
@@ -54,12 +59,14 @@ class categoryController extends Controller
     {
         $request->validate(
             [
-                'category_name' => 'required|min:4|regex:/^([a-zA-Z]+\s)*[a-zA-Z]+$/|max:255',
+                'category_name' => 'required|min:4|regex:/^([a-zA-Z. -]+\s)*[a-zA-Z. -]+$/|max:255',
                 //'category_description' => 'required|min:8|max:255',
             ]
         );
         //exit();
         $requestData = $request->all();
+        //print_r($requestData);
+        //exit();
         
         category::create($requestData);
 
@@ -90,8 +97,11 @@ class categoryController extends Controller
     public function edit($id)
     {
         $category = category::findOrFail($id);
+        $level = category::where(['parent_id'=>$id])->get();
+        //print_r($level);
+        //exit(); 
 
-        return view('admin.category.edit', compact('category'));
+        return view('admin.category.edit', compact('category','level'));
     }
 
     /**
