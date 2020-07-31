@@ -98,4 +98,8 @@
     margin-top: 25px;
     margin-left: 15px;
 }
-  
+
+.banner_content{
+    width: 276px;
+    text-align: justify;
+  }

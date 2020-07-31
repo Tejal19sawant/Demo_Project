@@ -29,6 +29,17 @@
     {!! $errors->first('bannerimage', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>
 
+<div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
+    <label for="status" class="control-label">{{ 'Status' }}</label>
+    <div class="radio">
+    <label><input name="status" type="radio" value="1" {{ (isset($banner) && 1 == $banner->status) ? 'checked' : '' }}> Yes</label>
+</div>
+<div class="radio">
+    <label><input name="status" type="radio" value="0" @if (isset($banner)) {{ (0 == $banner->status) ? 'checked' : '' }} @else {{ 'checked' }} @endif> No</label>
+</div>
+    {!! $errors->first('status', '<p class="help-block" style="color:red;">:message</p>') !!}
+</div>
+
 
 <div class="form-group">
     <input class="btn btn-primary" type="submit" value="{{ $formMode === 'edit' ? 'Update' : 'Create' }}">

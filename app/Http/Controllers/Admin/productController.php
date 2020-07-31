@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\product;
-use App\product_image;
 use App\category;
 use Image;
 use App\productattributeassoc;
 use App\Page;
+use App\product_image;
 
 
 class productController extends Controller
@@ -36,6 +36,10 @@ class productController extends Controller
         } else {
             $product = product::latest()->paginate($perPage);
         }
+        //print_r($product);
+
+
+        
         return view('admin.product.index',compact('product'));
     }
 
@@ -74,18 +78,6 @@ class productController extends Controller
             $product->description = $request->input('product_description');
             $product->price = $request->input('product_price');
             $product->status = $request->input('status');
-            $product->save();
-            /*********insert in product table************/
-
-            /*********insert in product_images table************/
-            $product_img_data = new product_image;
-            //fteching product id and name from product table
-            $pid_last_row = DB::table('product')->latest()->first()->id;
-            //print_r($pid_last_row); 
-           
-            // exit();
-            $product_img_data->product_id = $pid_last_row;
-        
             if($request->hasfile('image'))
             {
                 $img_tmp =$request->file('image');//Input::file('image');
@@ -100,21 +92,18 @@ class productController extends Controller
                     $file = $request->file('image')->getClientOriginalName();
                     $filename = pathinfo($file, PATHINFO_FILENAME);
                     $extension = pathinfo($file, PATHINFO_EXTENSION);
-                    $img_path = 'uploads/products/'.$filename;
+                    $img_path = 'uploads/products/'.$filename.'.'.$extension;
                     $img_name=$filename. '.' .$extension; 
-
+                    //print_r($img_name);
                     //image resize
                     Image::make($img_tmp)->resize(500,500)->save($img_path);
-                    $product_img_data->image = $img_name;
+                    $product->image = $img_name;
                 }
             }
-            $pnm_last_row = DB::table('product')->latest()->first()->name;
-            //print_r($pnm_last_row); 
-            $product_img_data->product_name = $pnm_last_row;
-            $product_img_data->status = $request->input('status');
-            $product_img_data->save();
-            /*********insert in product_images table************/
-            
+            //exit();
+            $product->save();
+            /*********insert in product table************/
+           
 
             return redirect('admin/product')->with('flash_message', 'user added!')->withInput();;
         }
@@ -123,19 +112,15 @@ class productController extends Controller
 
     public function edit_product($id)
     {
-        //$data['product']=$product = product::findOrFail($id);
-        //return $product;
+        $data['product']=$product = product::findOrFail($id);
+        //print_r($product);
         //echo $id;
+        //exit();
         
         $data['category']=$category = DB::table('categories')->get();
         //print_r($category);
 
-        $prod = DB::table('product')
-        ->join('product_images','product_images.product_id','product.id')
-        ->where('product.id','=',$id)->get();
-        //->first();
-        $data['product']=$product = json_decode(json_encode($prod), true);
-        // print_r($product);
+        
         
         return view('admin.product.edit',$data);
     }
@@ -165,16 +150,6 @@ class productController extends Controller
         $status = $request->input('status');
         //echo $status;
         
-        
-
-        $update_prod = array('category_id'=>$category_id,'name'=>$name,'code'=>$code,'colour'=>$colour,'description'=>$description,'price'=>$price,'status'=>$status);
-        //print_r($update_prod);
-
-        $updateprod=DB::table('product')
-                ->where('id', $id)
-                ->update($update_prod);
-        //exit();
-        /********new image file checking**********/
         if($request->hasfile('image'))
         {
             //echo 'yes';
@@ -187,58 +162,51 @@ class productController extends Controller
                     $file = $request->file('image')->getClientOriginalName();
                     $filename = pathinfo($file, PATHINFO_FILENAME);
                     $extension = pathinfo($file, PATHINFO_EXTENSION);
-                    $img_path = 'uploads/products/'.$filename;
+                    $img_path = 'uploads/products/'.$filename.'.'.$extension;
                     $img_name=$filename. '.' .$extension; 
-
+                    //print_r($img_name);
                     //image resize
                     Image::make($img_tmp)->resize(500,500)->save($img_path);
                     
                 }
 
-               
-               $img_new_update = array('product_id'=>$id,'image'=>$img_name,'product_name'=>$name,'status'=>$status);
-               //print_r($img_new_update);
-               $update_prod_img=DB::table('product_images')
-                                    ->where('product_id', $id)
-                                    ->update($img_new_update);
-                return redirect('/admin/product');
         }
-        else{
-           //echo 'no';
-           $imgold_tmp =$request->input('image_old');
-           //echo $imgold_tmp;
+        
 
-           $img_new_update = array('product_id'=>$id,'image'=>$imgold_tmp,'product_name'=>$name,'status'=>$status);
-           //print_r($img_new_update);
+        $update_prod = array('category_id'=>$category_id,
+        'name'=>$name,
+        'code'=>$code,
+        'colour'=>$colour,
+        'description'=>$description,
+        'price'=>$price,
+        'image'=>$img_name,
+        'status'=>$status);
+        //print_r($update_prod);exit();
 
-           $update_prod_img=DB::table('product_images')
-                                ->where('product_id', $id)
-                                ->update($img_new_update);
-           return redirect('/admin/product');
-        }
-
-        /**********new image file checking**********/
-      
+        $updateprod=DB::table('product')
+                ->where('id', $id)
+                ->update($update_prod);
+        //exit();
+        return redirect('/admin/product');
+       
     }
 
     public function show_product($id)
-    {
+    {  
         $data['product']=$product = product::findOrFail($id);
         //print_r($product);
         //echo '<br/>';
-
-        $data['product_image']=$product_image = product_image::findOrFail($id);
-        //print_r($product_image);
-
+        
+        
         $data['category_name']=$category_name =category::findOrFail($id);
-
+        // print_r($category_name);
+        // exit();
         return view('admin.product.show', $data);
     }
 
     public function delete_product($id)
     {
         product::destroy($id);
-        product_image::destroy($id);
 
         return redirect('admin/product')->with('flash_message', 'user deleted!');
 
@@ -359,4 +327,49 @@ class productController extends Controller
         return redirect('/admin/product/attributes/'.$product_id)->with('flash_message', 'Product attribute updated succesfully!');
     }
     
+
+    public function add_images(Request $request,$id=null)
+    {
+        $productDetails = product::where(['id'=>$id])->first();
+        if($request->isMethod('post'))
+        {
+            $data = $request->all();
+            // print_r($data);exit();
+            if($request->hasfile('image'))
+            {
+                $files = $request->file('image');
+                foreach($files as $file)
+                {
+                       $image = new product_image;
+                    
+                       $extension1 = $file->getClientOriginalName();
+                       //echo $extension1;
+                       $filename = pathinfo($extension1, PATHINFO_FILENAME);
+                       //echo $filename;
+                       $extension = pathinfo($extension1, PATHINFO_EXTENSION);
+                       //echo $extension;
+                       $img_path = 'uploads/products/'.$filename.'.'.$extension;
+                        $img_name=$filename. '.' .$extension; 
+                       //print_r($img_name);
+
+                        //image resize
+                        Image::make($file)->resize(500,500)->save($img_path);
+
+                        $image->image =$img_name;
+                        $image->product_id = $data['product_id'];
+                        $image->save();
+                        
+
+                   
+                }
+            }
+            //exit();
+            return redirect('/admin/product/add-images/'.$id)->with('flash_message', 'Images has been added succesfully!');
+        }
+
+        $product_images = product_image::where(['product_id'=>$id])->get();
+        //print_r($product_images); exit();
+
+        return view('admin.product.add_images',compact('productDetails','product_images'));
+    }
 }

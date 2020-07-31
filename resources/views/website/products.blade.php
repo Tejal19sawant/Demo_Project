@@ -80,14 +80,13 @@
                                     <div class="row">
                                         <?php //print_r($product_detl);?>
                                     @foreach($product_detl as $prod)
-                                       @foreach($prod->productimage as $p)
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
                                                     <div class="type-lb">
                                                         <p class="sale">Sale</p>
                                                     </div>
-                                                    <img src="{{ asset('uploads/products/'. $p->image ) }}" class="img-fluid" alt="Image">
+                                                    <img src="{{ asset('uploads/products/'. $prod->image ) }}" class="img-fluid" alt="Image">
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -103,7 +102,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @endforeach
                                     @endforeach                                          
                                     </div>
                                 </div>

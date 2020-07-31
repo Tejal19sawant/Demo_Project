@@ -60,7 +60,7 @@ class bannersController extends Controller
             [
                 'name' => 'required|min:4|regex:/^([a-zA-Z. -]+\s)*[a-zA-Z. -]+$/|max:255',
                 'textstyle' => 'required|min:4|max:255',
-                'sortorder' => 'required|min:4|max:255',
+                'sortorder' => 'required|min:1|max:255',
                 'bannerimage' => 'required',
                 //'category_description' => 'required|min:8|max:255',
             ]
@@ -68,6 +68,7 @@ class bannersController extends Controller
         //exit();
 
         $requestData = $request->all();
+        //print_r($requestData);exit();
                 if ($request->hasFile('bannerimage')) {
             $requestData['bannerimage'] = $request->file('bannerimage')
                 ->store('uploads', 'public');

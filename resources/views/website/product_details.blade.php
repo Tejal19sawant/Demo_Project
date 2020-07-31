@@ -23,13 +23,13 @@
                 <div class="col-xl-5 col-lg-5 col-md-6">
                     <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
                         <div class="carousel-inner" role="listbox">
-                            @foreach($product_imgdetl as $prod)
-                                @foreach($prod->productimage as $p)
-                                <div class="carousel-item active"> <img class="d-block w-100" src="{{asset('uploads/products/'.$p->image)}}" alt="First slide"> </div>
-                                <div class="carousel-item"> <img class="d-block w-100" src="{{asset('uploads/products/'.$p->image)}}" alt="Second slide"> </div>
-                                <div class="carousel-item"> <img class="d-block w-100" src="{{asset('uploads/products/'.$p->image)}}" alt="Third slide"> </div> 
-                                @endforeach
-                            @endforeach 
+                            
+                                
+                                <div class="carousel-item active"> <img class="d-block w-100" src="{{asset('uploads/products/'.$prod_detls->image)}}" alt="First slide"> </div>
+                                <div class="carousel-item"> <img class="d-block w-100" src="{{asset('uploads/products/'.$prod_detls->image)}}" alt="Second slide"> </div>
+                                <div class="carousel-item"> <img class="d-block w-100" src="{{asset('uploads/products/'.$prod_detls->image)}}" alt="Third slide"> </div> 
+                                
+                           
                         </div>
                         <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev"> 
 						<i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -41,13 +41,13 @@
 					</a>
                         <ol class="carousel-indicators">
                             <li data-target="#carousel-example-1" data-slide-to="0" class="active">
-                                <img class="d-block w-100 img-fluid" src="{{asset('uploads/products/'.$p->image)}}" alt="" />
+                                <img class="d-block w-100 img-fluid" src="{{asset('uploads/products/'.$prod_detls->image)}}" alt="" />
                             </li>
                             <li data-target="#carousel-example-1" data-slide-to="1">
-                                <img class="d-block w-100 img-fluid" src="{{asset('uploads/products/'.$p->image)}}" alt="" />
+                                <img class="d-block w-100 img-fluid" src="{{asset('uploads/products/'.$prod_detls->image)}}" alt="" />
                             </li>
                             <li data-target="#carousel-example-1" data-slide-to="2">
-                                <img class="d-block w-100 img-fluid" src="{{asset('uploads/products/'.$p->image)}}" alt="" />
+                                <img class="d-block w-100 img-fluid" src="{{asset('uploads/products/'.$prod_detls->image)}}" alt="" />
                             </li>
                         </ol>
                     </div>

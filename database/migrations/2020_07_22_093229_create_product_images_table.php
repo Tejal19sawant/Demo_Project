@@ -17,8 +17,8 @@ class CreateProductImagesTable extends Migration
             $table->id();
             $table->integer('product_id')->unsigned()->index()->foreign()->references("id")->on("product")->onDelete("cascade");
             $table->string('image');
-            $table->string('product_name');
-            $table->boolean('status');
+            // $table->string('product_name');
+            // $table->boolean('status');
             $table->timestamps();
         });
     }

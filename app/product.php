@@ -35,10 +35,7 @@ class product extends Model
       return $this->hasMany('App\productattributeassoc','product_id');
     }
 
-    public function productimage()
-    {
-      return $this->hasMany('App\product_image','product_id');
-    }
+   
 
     
     

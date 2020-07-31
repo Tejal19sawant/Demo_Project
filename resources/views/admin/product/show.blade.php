@@ -33,7 +33,7 @@
                                     <tr><th> Code </th><td> {{ $product->code }} </td></tr>
                                     <tr><th> Colour </th><td> {{ $product->colour }} </td></tr>
                                     <tr><th> Price </th><td> {{ $product->price }} </td></tr>
-                                    <tr><th> Image </th><td> <img src="{{asset('/public/uploads/products/'.$product_image->image)}}" alt="Not Available"> </td></tr>
+                                    <tr><th> Image </th><td> <img src="{{asset('uploads/products/'.$product->image)}}" alt="Not Available" style="width: 255px;"> </td></tr>
                                     <tr><th> Status </th><td> <?php if ($product->status='1'){
                                         echo 'Active';
                                     }

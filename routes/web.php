@@ -42,6 +42,7 @@ Route::get('/admin/product/attributes/{id?}', 'Admin\\productController@create_a
 Route::post('/admin/product/storeatt/{id?}', 'Admin\\productController@store_attribute');
 Route::DELETE('/admin/product/delete_attr/{id?}','Admin\\productController@delete_product_attr');
 Route::post('/admin/product/edit-attributes/{id?}', 'Admin\\productController@edit_attribute');
+Route::match(['get','post'],'/admin/product/add-images/{id?}', 'Admin\\productController@add_images');
 /**********Product Management ends here**********/
 
 Route::resource('admin/banners', 'Admin\\bannersController');
@@ -53,5 +54,6 @@ Route::resource('admin/banners', 'Admin\\bannersController');
 Route::get('/index','Website\HomeController@index');
 Route::get('/products','Website\ProductController@products');
 Route::get('/products/{id}','Website\ProductController@product_details');
+
 
 /************WEBSITE SECTION LINK ENDS HERE***********************/

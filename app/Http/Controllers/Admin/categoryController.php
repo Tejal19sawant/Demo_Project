@@ -19,7 +19,7 @@ class categoryController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 5;
+        $perPage = 10;
 
         if (!empty($keyword)) {
             $category = category::where('category_name', 'LIKE', "%$keyword%")

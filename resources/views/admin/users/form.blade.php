@@ -1,5 +1,5 @@
 <div class="form-group {{ $errors->has('name') ? 'has-error' : ''}}">
-    <label for="name" class="control-label">{{ 'Name' }}</label>
+    <label for="name" class="control-label">{{ 'Name' }} </label>
     <input class="form-control" name="name" type="text" id="name" value="{{ isset($user->name) ? $user->name : old('name')}}">
     {!! $errors->first('name', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>
@@ -34,13 +34,14 @@
     {!! $errors->first('status', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('role') ? 'has-error' : ''}}">
-    <label for="role" class="control-label">{{ 'Role' }}</label>
+    <label for="role" class="control-label">{{ 'Role' }}</label><?php  if(isset($user->role)){ $urole= $user->role;}else{$urole ="";}  ?>
     <select name="role" class="form-control" id="role" >
     <!-- @foreach (json_decode('{"Customer": "Customer", "Superadmin": "Superadmin", "Admin": "Admin", "Inventory Manager":"Inventory Manager", "Order Manager":"Order Manager"}', true) as $optionKey => $optionValue)
         <option value="{{ $optionKey }}" {{ (isset($user->role) && $user->role == $optionKey) ? 'selected' : ''}}>{{ $optionValue }}</option>
-    @endforeach -->
+    @endforeach   -->
+    
     @foreach($role as $rl)
-        <option value="{{$rl->id}}" {{$rl->id == $rl->name ? 'selected' : ''}}>{{$rl->name }}</option>
+        <option value="{{$rl->id}}" {{$urole == $rl->name ? 'selected' : ''}}>{{$rl->name }}</option>
     @endforeach
 </select>
     {!! $errors->first('role', '<p class="help-block" style="color:red;">:message</p>') !!}

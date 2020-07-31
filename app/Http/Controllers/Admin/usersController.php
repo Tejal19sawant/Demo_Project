@@ -58,6 +58,7 @@ class usersController extends Controller
     {
         $role = Role::all();
         //print_r($role);
+        
 
         return view('admin.users.create',compact('role'));
     }

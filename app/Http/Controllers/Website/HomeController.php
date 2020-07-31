@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\category;
 use App\product;
-use App\product_image;
+use App\banner;
 
 class HomeController extends Controller
 {
@@ -16,7 +16,11 @@ class HomeController extends Controller
     {
         $category = category::where('status','1')->get();
         //print_r($category);
-        return view('website/home',compact('category'));
+
+        $banners = banner::orderby('sortorder','asc')->get();
+        //print_r($banners);
+
+        return view('website/home',compact('category','banners'));
     }
 
     

@@ -21,6 +21,7 @@ class CreateBannersTable extends Migration
             $table->string('link')->nullable();
             $table->string('sortorder')->nullable();
             $table->string('bannerimage')->nullable();
+            $table->boolean('status');
             });
     }
 

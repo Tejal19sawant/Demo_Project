@@ -41,20 +41,25 @@
                                         <th>Product Colour</th>
                                         <th>Product Description</th>
                                         <th>Product Price</th>
+                                        <th>Product Image</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php //print_r($product);?>
+                                <?php $i = 1;?>
                                 @foreach($product as $item)
+                                   
+                                   
                                     <tr>
-                                        <td>{{ $loop->iteration}}</td>
+                                        <td>{{ $i }}</td>
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->code}}</td>
                                         <td>{{$item->colour}}</td>
                                         <td>{{$item->description}}</td>
                                         <td>{{$item->price}}</td>
+                                        <td><img src="{{asset('uploads/products/'.$item->image)}}" style="width: 240px;"></td>
                                         <td><?php if ($item->status='1'){
                                         echo 'Active';
                                     }
@@ -63,6 +68,7 @@
                                     } ?> </td>
                                         <td>
                                         <a href="{{ url('/admin/product/attributes/' . $item->id) }}" title="Attributes product"><button class="btn btn-info btn-sm"><i class="fa fa-bars" aria-hidden="true"></i> Attributes</button></a>
+                                        <a href="{{ url('/admin/product/add-images/' . $item->id) }}" title="Add product Images"><button class="btn btn-warning btn-sm"><i class="fa fa-image" aria-hidden="true"></i> Images</button></a>
                                             <a href="{{ url('/admin/product/' . $item->id) }}" title="View product"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/admin/product/' . $item->id . '/edit') }}" title="Edit product"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
 
@@ -73,6 +79,8 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    <?php  $i++;?>
+                                   
                                 @endforeach
                                 </tbody>
                             </table>
