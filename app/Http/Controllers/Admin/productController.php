@@ -15,6 +15,8 @@ use App\Page;
 use App\product_image;
 
 
+
+
 class productController extends Controller
 {
     public function __construct()
@@ -371,5 +373,26 @@ class productController extends Controller
         //print_r($product_images); exit();
 
         return view('admin.product.add_images',compact('productDetails','product_images'));
+    }
+
+
+    public function delete_product_imgaes($id=null)
+    {
+        $productImage = product_image::where(['id'=>$id])->first();
+        //print_r($productImage);
+
+        $image_path =  'uploads/products/';
+
+
+        if(file_exists($image_path.$productImage->image))
+        {
+            unlink($image_path.$productImage->image);
+            
+        }
+        
+        //exit();
+        product_image::destroy($id);
+                
+        return redirect()->back()->with('flash_message', 'Product Image Deleted!');
     }
 }

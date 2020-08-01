@@ -9,7 +9,7 @@
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
     <title>Admin</title>
-
+    
     <!-- Bootstrap -->
     <link href="{{asset('css/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -31,6 +31,7 @@
 
     <!---------My Css----------->
     <link href="{{asset('css/my_css.css')}}" rel="stylesheet"/>
+    <link hre="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.css" rel="stylesheet">
   </head>
   <body class="nav-md">
     <div class="container body">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\category;
 use App\product;
+use App\product_image;
 
 
 class ProductController extends Controller
@@ -22,9 +23,12 @@ class ProductController extends Controller
 
     public function product_details($id=null)
     {
-        $prod_detls = product::where(['id'=>$id])->first();
+        $prod_detls = product::with('attributes')->where(['id'=>$id])->first();
         //print_r($prod_detls); exit();
 
-        return view('website/product_details')->with(compact('prod_detls'));
+        $productAltImages = product_image::where('product_id',$id)->get();
+        //print_r($productAltImages);
+
+        return view('website/product_details')->with(compact('prod_detls','productAltImages'));
     }
 }

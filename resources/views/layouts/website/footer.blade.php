@@ -60,6 +60,7 @@
             <a href="https://html.design/">html design</a></p>
     </div>
     <!-- End copyright  -->
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 

@@ -96,7 +96,7 @@
                             <td>
                             
                                
-                            <form method="POST" action="{{ url('/admin/product/delete_attr/' .  $img->id) }}" accept-charset="UTF-8" style="display:inline">
+                            <form method="POST" action="{{ url('/admin/product/delete_prodimgs/' .  $img->id) }}" accept-charset="UTF-8" style="display:inline">
                                 {{ method_field('DELETE') }}
                                 {{ csrf_field() }}
                                 <input type="hidden" name="delete_prod_id" value="">

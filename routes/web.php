@@ -43,6 +43,7 @@ Route::post('/admin/product/storeatt/{id?}', 'Admin\\productController@store_att
 Route::DELETE('/admin/product/delete_attr/{id?}','Admin\\productController@delete_product_attr');
 Route::post('/admin/product/edit-attributes/{id?}', 'Admin\\productController@edit_attribute');
 Route::match(['get','post'],'/admin/product/add-images/{id?}', 'Admin\\productController@add_images');
+Route::DELETE('/admin/product/delete_prodimgs/{id?}','Admin\\productController@delete_product_imgaes');
 /**********Product Management ends here**********/
 
 Route::resource('admin/banners', 'Admin\\bannersController');

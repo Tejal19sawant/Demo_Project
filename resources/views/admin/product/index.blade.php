@@ -43,6 +43,7 @@
                                         <th>Product Price</th>
                                         <th>Product Image</th>
                                         <th>Status</th>
+                                        <th>Featured Products</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -66,6 +67,12 @@
                                     else{
                                         echo 'Inactive';
                                     } ?> </td>
+                                    <td>
+                                        <input type="checkbox" class="ProductFeaturedStatus btn btn-sucess" rel="{{$item->featured_products}}" data-toggle="toggle" 
+                                        data-on="Enabled" data-of="Disabled" data-onstyle="screen" data-ofstyle="danger" @if($item->status=="1") checked @endif>
+                                        <div id="myElem" style="display:none;" class="alert alert-sucess">Status Enabled</div>
+
+                                    </td>
                                         <td>
                                         <a href="{{ url('/admin/product/attributes/' . $item->id) }}" title="Attributes product"><button class="btn btn-info btn-sm"><i class="fa fa-bars" aria-hidden="true"></i> Attributes</button></a>
                                         <a href="{{ url('/admin/product/add-images/' . $item->id) }}" title="Add product Images"><button class="btn btn-warning btn-sm"><i class="fa fa-image" aria-hidden="true"></i> Images</button></a>
