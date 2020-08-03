@@ -31,7 +31,7 @@
 
     <!---------My Css----------->
     <link href="{{asset('css/my_css.css')}}" rel="stylesheet"/>
-    <link hre="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"/>
   </head>
   <body class="nav-md">
     <div class="container body">

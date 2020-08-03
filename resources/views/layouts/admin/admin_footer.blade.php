@@ -13,7 +13,7 @@
     <!-- <script src="{{asset('js/vendors/jquery/dist/jquery.min.js')}}"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.js"></script>
+    
     <!-- Bootstrap -->
     <script src="{{asset('js/vendors/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
     <!-- FastClick -->
@@ -50,7 +50,7 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{asset('js/custom.min.js')}}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.js"></script>
 
 <script>
 /********Add/Remove input fields*****************/

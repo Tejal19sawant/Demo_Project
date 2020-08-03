@@ -68,8 +68,8 @@
                                         echo 'Inactive';
                                     } ?> </td>
                                     <td>
-                                        <input type="checkbox" class="ProductFeaturedStatus btn btn-sucess" rel="{{$item->featured_products}}" data-toggle="toggle" 
-                                        data-on="Enabled" data-of="Disabled" data-onstyle="screen" data-ofstyle="danger" @if($item->status=="1") checked @endif>
+                                        <input type="checkbox" class="ProductFeaturedStatus btn btn-sucess" rel="{{$item->id}}" data-toggle="toggle" 
+                                        data-on="Enabled" data-of="Disabled" data-onstyle="success" data-offstyle="danger" @if($item->status=="1") checked @endif>
                                         <div id="myElem" style="display:none;" class="alert alert-sucess">Status Enabled</div>
 
                                     </td>
