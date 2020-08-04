@@ -14,10 +14,13 @@
                             {{ session('flash_message') }}
                         </div>
                     @endif
+                    <div class="alert alert-success" id="fp_statusdiv" style="display:none;">
+                            <span>Featured Product Status Updated.</span>
+                    </div>
                         <a href="{{ url('/admin/product/create') }}" class="btn btn-success btn-sm" title="Add New category">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
-                   
+                        
                         <!-- <form method="GET" action="{{ url('/admin/category') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
@@ -68,10 +71,11 @@
                                         echo 'Inactive';
                                     } ?> </td>
                                     <td>
-                                        <input type="checkbox" class="ProductFeaturedStatus btn btn-sucess" rel="{{$item->id}}" data-toggle="toggle" 
-                                        data-on="Enabled" data-of="Disabled" data-onstyle="success" data-offstyle="danger" @if($item->status=="1") checked @endif>
-                                        <div id="myElem" style="display:none;" class="alert alert-sucess">Status Enabled</div>
-
+                                        <label class="switch">
+                                        <input type="checkbox" id="featured_prodid_{{$item->id}}"  {{ (isset($item) && 1 == $item->featured_products) ? 'checked' : '' }}>
+                                        <span class="slider round"></span>
+                                        </label>
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
                                     </td>
                                         <td>
                                         <a href="{{ url('/admin/product/attributes/' . $item->id) }}" title="Attributes product"><button class="btn btn-info btn-sm"><i class="fa fa-bars" aria-hidden="true"></i> Attributes</button></a>
@@ -99,4 +103,6 @@
             </div>
         </div>
     </div>
+
+
 @endsection

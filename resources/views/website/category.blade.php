@@ -9,7 +9,7 @@
                     <h2>Products</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Products</li>
+                        <li class="breadcrumb-item active">{{$product_name->name}}</li>
                     </ul>
                 </div>
             </div>
@@ -31,6 +31,7 @@
                             </form>
                         </div>
                         <div class="filter-sidebar-left">
+                        
                             <div class="title-left">
                                 <h3>Categories</h3>
                             </div>
@@ -77,7 +78,7 @@
                         <div class="row product-categorie-box">
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
-                                    
+                                    <h1 align="center">{{$product_name->name}}</h1>
                                     <div class="row">
                                         <?php //print_r($product_detl);?>
                                     @foreach($product_detl as $prod)

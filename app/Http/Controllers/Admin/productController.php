@@ -395,4 +395,17 @@ class productController extends Controller
                 
         return redirect()->back()->with('flash_message', 'Product Image Deleted!');
     }
+
+    public function update_featuredprod_status(Request $request,$id=null)
+    {
+        //echo 'hiii';
+        $chked = $request->get('chked');
+        //echo $chked;
+        $prod_featured = array('featured_products'=>$chked);
+        $updateprod=DB::table('product')
+                ->where('id', $id)
+                ->update($prod_featured);
+
+        //return redirect()->back()->with('flash_message', 'Featured Product updtaed !');
+    }
 }

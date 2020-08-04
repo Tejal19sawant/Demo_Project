@@ -80,6 +80,33 @@
     <script src="{{asset('js/website_js/form-validator.min.js')}}"></script>
     <script src="{{asset('js/website_js/contact-form-script.js')}}"></script>
     <script src="{{asset('js/website_js/custom.js')}}"></script>
+
+
+    <script>
+    $(document).ready(function(){
+        // alert();
+        $("#selSize").change(function(){
+            // alert();
+            var idSize = $(this).val();
+            if(idSize==""){
+                return false;
+            }
+            $.ajax({
+                type : 'get',
+                url : '/get-product-price',
+                data : {idSize:idSize},
+                success:function(result){
+                    //alert(result);
+                    var arr = result.split('#');
+                    $('#getPrice').html("Product Price: Rs "+arr[0]);
+                },error:function(){
+                    alert("Error");
+                }
+            });
+        });
+    });
+
+    </script>
 </body>
 
 </html>

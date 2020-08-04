@@ -96,7 +96,51 @@ $(document).ready(function() {
       
        
     // });
+
+/************Product featured staus update*************/
+
+$('input[type="checkbox"]').click(function(){
+ 
+  var featured_prodId = $(this).attr('id');
+  //alert(featured_prodId);
+
+  var res =  featured_prodId.split('_');
+  //alert(res);
+  var id=res[2];
+  //alert(res[2]);
+            if($(this).prop("checked") == true){
+                //console.log("Checkbox is checked.");
+                var chked = '1';
+            }
+            else if($(this).prop("checked") == false){
+                //console.log("Checkbox is unchecked.");
+                var chked = '0';
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/admin/product/updatefeaturedprod/"+id,
+                data: {chked:chked}, 
+                success: function(result){
+                //$("#div1").html(result);
+                //alert(result);
+                $('#fp_statusdiv').show();
+            }});
+});
+   
+$.ajaxSetup({
+
+headers: {
+
+  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+}
+
+});
+/************Product featured staus update*************/
 </script>
+
+
 	
   </body>
 </html>
