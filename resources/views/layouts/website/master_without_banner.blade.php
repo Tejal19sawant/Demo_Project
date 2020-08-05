@@ -1,6 +1,6 @@
 @include('layouts.website.header')
  <!-- page content -->
- <div class="categories-shop" > 
+ <div class="" > 
  <!-- style="min-height: 800px;" -->
           @yield('content')
 </div>

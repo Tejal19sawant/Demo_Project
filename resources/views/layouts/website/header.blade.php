@@ -28,7 +28,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{asset('css/website_css/custom.css')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -80,8 +80,8 @@
                     </div>
                     <div class="our-link">
                         <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Our location</a></li>
+                            <li><a href="#"><i class="fa fa-cart-plus"></i> Cart</a></li>
+                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
                             <li><a href="#">Contact Us</a></li>
                         </ul>
                     </div>
@@ -110,7 +110,7 @@
                         <li class="nav-item active"><a class="nav-link" href="/index">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
                         <li class="dropdown megamenu-fw">
-                            <a href="/products" class="nav-link dropdown-toggle" data-toggle="dropdown">Product</a>
+                            <a href="/products" id="products_menulink" class="nav-link dropdown-toggle" data-toggle="dropdown">Product</a>
                             <ul class="dropdown-menu megamenu-content" role="menu">
                                 <li>
                                     <div class="row">

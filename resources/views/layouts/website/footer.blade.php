@@ -60,7 +60,7 @@
             <a href="https://html.design/">html design</a></p>
     </div>
     <!-- End copyright  -->
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="{{asset('js/website_js/kit_fontawesome.js')}}"></script>
 
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
@@ -79,10 +79,12 @@
     <script src="{{asset('js/website_js/baguetteBox.min.js')}}"></script>
     <script src="{{asset('js/website_js/form-validator.min.js')}}"></script>
     <script src="{{asset('js/website_js/contact-form-script.js')}}"></script>
+    <script src="{{asset('js/website_js/jquery.nicescroll.min.js')}}"></script>
     <script src="{{asset('js/website_js/custom.js')}}"></script>
-
+    
 
     <script>
+    /*******getting every indivisual product detail price on changing size**********/
     $(document).ready(function(){
         // alert();
         $("#selSize").change(function(){
@@ -99,13 +101,17 @@
                     //alert(result);
                     var arr = result.split('#');
                     $('#getPrice').html("Product Price: Rs "+arr[0]);
+                    $('#price').val(arr[0]);
                 },error:function(){
                     alert("Error");
                 }
             });
         });
     });
+    /*******getting every indivisual product detail price on changing size**********/
 
+                            
+   
     </script>
 </body>
 

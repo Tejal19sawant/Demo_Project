@@ -42,7 +42,7 @@
                                     <a class="list-group-item list-group-item-action" href="#{{$cat->id}}" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">{{$cat->category_name}}  
                                 </a>
                                    
-                                    <div class="collapse show" id="{{$cat->id}}" data-parent="#list-group-men">
+                                    <div class="collapse" id="{{$cat->id}}" data-parent="#list-group-men"><!----show--->
                                         <div class="list-group">
                                             @foreach($cat->categories as $subcat)
                                             <a href="{{url('/categories/'.$subcat->id)}}" class="list-group-item list-group-item-action active">{{$subcat->category_name}}</a>

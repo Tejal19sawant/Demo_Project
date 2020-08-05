@@ -14,11 +14,13 @@ class HomeController extends Controller
     //
     public function index()
     {
-        $category = category::where('status','1')->get();
-        //print_r($category);
+        $category = category::with('product')->where('status','1')->get();
+        //print_r($category); exit();
 
         $banners = banner::orderby('sortorder','asc')->get();
         //print_r($banners);
+
+        
 
         return view('website/home',compact('category','banners'));
     }

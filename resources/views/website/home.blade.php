@@ -6,16 +6,18 @@
         <div class="container">
             <div class="row">
             <?php //print_r($category);?>
-                @foreach($category->take(3) as $cat)
+                @foreach($category as $cat)
+                @foreach($cat->product as $pimg)
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                        
-                        <img class="img-fluid" src="{{asset('images/website_images/t-shirts-img.jpg')}}" alt="" />
+                        <img class="img-fluid" src="{{asset('uploads/products/'.$pimg->image)}}" alt="" />
                         
                         <a class="btn hvr-hover" href="/products">{{$cat->category_name}}</a>
                     </div>
                     
                 </div>
+                @endforeach
                 @endforeach
             </div>
         </div>

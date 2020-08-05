@@ -58,4 +58,10 @@ Route::get('/products','Website\ProductController@products');
 Route::get('/products/{id}','Website\ProductController@product_details');
 Route::get('/categories/{categoty_id}','Website\ProductController@categories');
 Route::get('/get-product-price','Website\ProductController@getprice');
+
+
+//Route for add to cart
+Route::match(['get','post'],'add-cart','Website\ProductController@addtoCart');
+//Route for cart
+Route::match(['get','post'],'/cart','Website\ProductController@Cart');
 /************WEBSITE SECTION LINK ENDS HERE***********************/

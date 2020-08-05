@@ -3,17 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Kodeine\Acl\Traits\HasRole;
 
-class product extends Model
+class Cart extends Model
 {
    /**
      * The database table used by the model.
      *
      * @var string
      */
-    use HasRole;
-    protected $table = 'product';
+    protected $table = 'cart';
 
     /**
     * The database primary key value.
@@ -27,15 +25,8 @@ class product extends Model
      *
      * @var array
      */
-    protected $fillable = ['category_id','name', 'code', 'colour', 'description', 'price', 'image', 'status'];
+    protected $fillable = ['product_id','product_name', 'product_code', 'product_colour','size','price','quantity','user_email','session_id'];
 
-   
-    public function attributes()
-    {
-      return $this->hasMany('App\productattributeassoc','product_id');
-    }
 
     
-    
-
 }

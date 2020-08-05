@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\Website;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+// use Illuminate\Support\Facades\Session;
 
 use App\category;
 use App\product;
 use App\product_image;
 use App\productattributeassoc;
+use App\cart;
+use Session;
 
 
 class ProductController extends Controller
@@ -54,5 +59,42 @@ class ProductController extends Controller
         $proAttr = productattributeassoc::where(['product_id'=>$prodArr[0],'size'=>$prodArr[1]])->first();
         //print_r($proAttr);
         echo $proAttr->price;
+    }
+
+    public function addtoCart(Request $request)
+    {
+        $data = $request->all();
+        $array = explode('-', $data['size']);
+        //print_r($array);exit();
+        if(empty($data['user_email'])){
+            $data['user_email']='';
+        }
+        $session_id = Session::get('session_id');
+        if(empty($session_id)){
+            $session_id = Str::random(40); 
+            Session::put('session_id',$session_id);
+        }
+       
+
+        DB::table('cart')->insert(['product_id'=>$data['product_id'],
+        'product_name'=>$data['product_name'],
+        'product_code'=>$data['product_code'],
+        'product_colour'=>$data['product_colour'],
+        'price'=>$data['product_price'],
+        'size'=>$array[1],
+        'quantity'=>$data['quantity'],
+        'user_email'=>$data['user_email'],
+        'session_id'=>$session_id
+        ]);
+
+        return redirect('/cart')->with('flash_message','Product has been added in cart');
+    }
+
+    public function Cart(Request $request)
+    {
+        $session_id = Session::get('session_id');
+        $userCart = DB::table('cart')->where(['session_id'=>$session_id])->get();
+        //print_r($userCart);
+        return view('website/products/cart')->with(compact('userCart'));
     }
 }
