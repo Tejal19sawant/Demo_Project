@@ -16,6 +16,16 @@
         </div>
     </div>
     <!-- End All Title Box -->
+    @if (session('flash_message'))
+        <div class="alert alert-success">
+            {{ session('flash_message') }}
+        </div>
+    @endif
+    @if (session('flash_message_error'))
+        <div class="alert alert-danger">
+            {{ session('flash_message_error') }}
+        </div>
+    @endif
  <!-- Start Shop Detail  -->
  <div class="shop-detail-box-main">
         <div class="container">

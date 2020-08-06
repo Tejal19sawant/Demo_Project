@@ -70,7 +70,7 @@ class categoryController extends Controller
         
         category::create($requestData);
 
-        return redirect('admin/category')->with('flash_message', 'category added!')->withInput();;
+        return redirect('admin/category')->with('flash_message', 'category added!')->withInput();
     }
 
     /**

@@ -76,6 +76,8 @@
                   </li>
                   <li><a href="/admin/banners"><i class="fa fa-file-image-o" aria-hidden="true"></i> Banners Management </a>
                   </li>
+                  <li><a href="/admin/coupon"><i class="fa fa-tag fa-lg"></i>Coupons Management </a>
+                  </li>
                  
                 </ul>
               </div>

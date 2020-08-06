@@ -48,6 +48,16 @@ Route::post('/admin/product/updatefeaturedprod/{id?}', 'Admin\\productController
 /**********Product Management ends here**********/
 
 Route::resource('admin/banners', 'Admin\\bannersController');
+
+//Coupons route
+Route::match(['get','post'],'/admin/coupon', 'Admin\\CouponsController@index');
+Route::match(['get','post'],'/admin/coupon/create', 'Admin\\CouponsController@create');
+Route::post('/admin/coupon/store', 'Admin\\CouponsController@store');
+Route::get('/admin/coupon/{id?}','Admin\\CouponsController@show');
+Route::get('/admin/coupon/{id?}/edit','Admin\\CouponsController@edit');
+Route::patch('/admin/coupon/{id?}','Admin\\CouponsController@update');
+Route::DELETE('/admin/coupon/{id?}','Admin\\CouponsController@delete');
+
 /***********ADMIN SECTION LINK ENDS HERE****************/
 
 
@@ -59,9 +69,17 @@ Route::get('/products/{id}','Website\ProductController@product_details');
 Route::get('/categories/{categoty_id}','Website\ProductController@categories');
 Route::get('/get-product-price','Website\ProductController@getprice');
 
+//Route for Login-Register
+Route::get('/login-register','Website\\LoginController@userLogin');
 
 //Route for add to cart
 Route::match(['get','post'],'add-cart','Website\ProductController@addtoCart');
 //Route for cart
 Route::match(['get','post'],'/cart','Website\ProductController@Cart');
+//Route for Delete cart
+Route::get('/cart/delete-product/{id?}','Website\\ProductController@deleteCartProduct');
+//Route for Update Quantity
+Route::get('/cart/update-quantity/{id}/{quantity}','Website\ProductController@updateCartQuantity');
+//Apply Coupon Code
+Route::post('/cart/apply-coupon','Website\ProductController@applyCoupon');
 /************WEBSITE SECTION LINK ENDS HERE***********************/

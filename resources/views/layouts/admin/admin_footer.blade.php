@@ -82,7 +82,7 @@ $(document).ready(function() {
 /********Add/Remove input fields*****************/
 </script>
 <script>
-    // $(document).ready(function(){
+   $(document).ready(function(){
     //    //alert();
     //   var url = $(location).attr('href'),
     //   parts = url.split("/"),
@@ -93,9 +93,12 @@ $(document).ready(function() {
     //   { //alert('yes');
     //     $("ul.side-menu li:first").addClass("current-page");
     //   }
-      
+
+    //jq for coupon datepicker field
+    expiry_date.min = new Date().toISOString().split("T")[0];
+    
        
-    // });
+   });
 
 /************Product featured staus update*************/
 
@@ -138,6 +141,8 @@ headers: {
 
 });
 /************Product featured staus update*************/
+
+
 </script>
 
 
