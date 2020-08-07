@@ -16,15 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Auth::routes();
+// Auth::routes();
+Auth::routes(['verify'=>true]);
 
 /***********ADMIN SECTION LINK STARTS HERE****************/
-Route::get('/', function () {
+Route::get('/admin', function () {
     //return view('welcome');
     return view('auth/login');
 });
+Route::match(['get','post'],'/logout', 'Auth\\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::resource('admin/users', 'Admin\\usersController');
 Route::resource('admin/configuration', 'Admin\\configurationController');
@@ -63,7 +66,7 @@ Route::DELETE('/admin/coupon/{id?}','Admin\\CouponsController@delete');
 
 /***********WEBSITE SECTION LINK STARTS HERE****************/
 
-Route::get('/index','Website\HomeController@index');
+Route::get('/','Website\HomeController@index');
 Route::get('/products','Website\ProductController@products');
 Route::get('/products/{id}','Website\ProductController@product_details');
 Route::get('/categories/{categoty_id}','Website\ProductController@categories');
@@ -84,6 +87,7 @@ Route::group(['middleware'=>['frontlogin']],function(){
 Route::match(['get','post'],'/account','Website\LoginController@account');
 Route::match(['get','post'],'/change-password','Website\LoginController@changePassword');
 Route::match(['get','post'],'/change-address','Website\LoginController@changeAddress');
+Route::match(['get','post'],'/checkout','Website\LoginController@checkout');
 });
 
 
@@ -93,7 +97,7 @@ Route::match(['get','post'],'/change-address','Website\LoginController@changeAdd
 //Route for add to cart
 Route::match(['get','post'],'add-cart','Website\ProductController@addtoCart');
 //Route for cart
-Route::match(['get','post'],'/cart','Website\ProductController@Cart');
+Route::match(['get','post'],'/cart','Website\ProductController@Cart')->middleware('verified');
 //Route for Delete cart
 Route::get('/cart/delete-product/{id?}','Website\\ProductController@deleteCartProduct');
 //Route for Update Quantity

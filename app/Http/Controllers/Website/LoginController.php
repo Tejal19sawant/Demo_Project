@@ -11,11 +11,13 @@ use Auth;
 use Session;
 use App\Country;
 use Illuminate\Support\Facades\Hash;
+use App\DeliveryAddress;
 
 class LoginController extends Controller
 {
     public function userLogin()
-    {
+    { 
+        
         return view('website/users/login_register'); 
     }
 
@@ -52,16 +54,16 @@ class LoginController extends Controller
     {
         Session::forget('frontSession');
         Auth::logout();
-        return redirect('/index');
+        return redirect('/');
     }
 
     public function login(Request $request)
     {
         
         $data = $request->all();
-        // print_r($data);
+        //print_r($data);exit();
 
-        if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']]))
+        if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password'],'admin'=>0]))
         {
             Session::put('frontSession',$data['email']);
             return redirect('/cart');
@@ -121,5 +123,59 @@ class LoginController extends Controller
 
         $countries = Country::get();
         return view('website/users/change_address',compact('countries','userDetails'));
+    }
+
+    public function checkout(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $user_email =Auth::user()->email;
+        $shippingDetails= DeliveryAddress::where('user_id',$user_id)->first();
+        $userDetails = User::find($user_id);
+        $country = Country::get();
+
+        //check if shipping address exits
+        $shippingCount = DeliveryAddress::where('user_id',$user_id)->count();
+        
+       
+        if($shippingCount > 0)
+        {
+            $shippingCount1 = DeliveryAddress::where('user_id',$user_id)->first();
+            //print_r($shippingCount1);exit();
+        }
+
+        if($request->isMethod('post')){
+            $data  = $request->all();
+            // print_r($data);
+
+            User::where('id',$user_id)->update(['name'=>$data['billing_name'],'address'=>$data['billing_address'],
+            'city'=>$data['billing_city'],'state'=>$data['billing_state'],'pincode'=>$data['billing_pincode'],
+            'country'=>$data['billing_country'],'mobile'=>$data['billing_mobile']]);
+
+            if($shippingCount > 0)
+            {
+                DeliveryAddress::where('user_id',$user_id)->update(['name'=>$data['shipping_name'],'address'=>$data['shipping_address'],
+            'city'=>$data['shipping_city'],'state'=>$data['shipping_state'],'pincode'=>$data['shipping_pincode'],
+            'country'=>$data['shipping_country'],'mobile'=>$data['shipping_mobile']]);
+            }
+            else{
+                //New Shipping Address
+                $shipping = new DeliveryAddress;
+               
+                $shipping->user_id = $user_id;
+                $shipping->user_email = $user_email;
+                $shipping->name = $data['shipping_name'];
+                $shipping->address = $data['shipping_address'];
+                $shipping->city = $data['shipping_city'];
+                $shipping->state = $data['shipping_state'];
+                $shipping->country = $data['shipping_country'];
+                $shipping->pincode = $data['shipping_pincode'];
+                $shipping->mobile = $data['shipping_mobile'];
+                $shipping->save();
+                
+
+            }
+            echo 'redirect'; exit();
+        }
+        return view('website/products/checkout',compact('userDetails','country','shippingDetails'));
     }
 }

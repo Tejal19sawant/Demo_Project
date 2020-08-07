@@ -18,7 +18,7 @@
             <div class="col-md-6 ">
                 <div class="contact-form-right">
 
-                    <h2>Change Password !</h2>
+                    <h2>Change Address !</h2>
                     <form action="{{url('/change-address')}}" method="post" id="contactForm1">
                     {{csrf_field()}}
                         <div class="row">

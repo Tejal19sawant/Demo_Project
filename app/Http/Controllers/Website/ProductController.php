@@ -14,6 +14,7 @@ use App\productattributeassoc;
 use App\Cart;
 use App\Coupons;
 use Session;
+use Auth;
 
 
 class ProductController extends Controller
@@ -67,7 +68,9 @@ class ProductController extends Controller
         Session::forget('CouponAmount');
         Session::forget('Coupon_code');
 
+        
         $data = $request->all();
+        //print_r($data);exit();
         $array = explode('-', $data['size']);
         //print_r($array);exit();
         if(empty($data['user_email'])){

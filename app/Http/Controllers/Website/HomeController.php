@@ -8,12 +8,18 @@ use Illuminate\Http\Request;
 use App\category;
 use App\product;
 use App\banner;
+use Auth;
+use Session;
 
 class HomeController extends Controller
 {
     //
     public function index()
-    {
+    { 
+        // $userId = Auth::id();
+        // print_r($userId);
+        
+        
         $category = category::with('product')->where('status','1')->get();
         //print_r($category); exit();
 

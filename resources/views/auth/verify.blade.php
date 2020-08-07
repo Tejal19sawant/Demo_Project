@@ -1,10 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.website.master_without_banner')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+
+<div class="shop-box-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <div class="card">
                 <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
                 <div class="card-body">
@@ -22,7 +24,8 @@
                     </form>
                 </div>
             </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 @endsection
