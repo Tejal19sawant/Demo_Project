@@ -15,12 +15,12 @@
 </div>
 <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
     <label for="password" class="control-label">{{ 'Password' }}</label>
-    <input class="form-control" name="password" type="text" id="password" value="">
+    <input class="form-control" name="password" type="password" id="password" value="">
     {!! $errors->first('password', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('confirmpassword') ? 'has-error' : ''}}">
     <label for="confirmpassword" class="control-label">{{ 'Confirmpassword' }}</label>
-    <input class="form-control" name="confirmpassword" type="text" id="confirmpassword" value="">
+    <input class="form-control" name="confirmpassword" type="password" id="confirmpassword" value="">
     {!! $errors->first('confirmpassword', '<p class="help-block" style="color:red;">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">

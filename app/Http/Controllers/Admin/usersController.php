@@ -74,6 +74,7 @@ class usersController extends Controller
     {
         
         $requestData = $request->all();
+        //print_r($requestData); exit();
 
         $request->validate(
             [
@@ -90,6 +91,7 @@ class usersController extends Controller
         $admin->name = $request->input('name');
         $admin->lastname = $request->input('lastname');
         $admin->email = $request->input('email');
+        $admin->admin = '1';
         $admin->password=bcrypt($request->input('password'));
         $admin->confirmpassword=bcrypt($request->input('confirmpassword'));
         $admin->status = $request->input('status');

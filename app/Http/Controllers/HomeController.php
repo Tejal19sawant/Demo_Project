@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Kodeine\Acl\Models\Eloquent\Permission;
 use Kodeine\Acl\Models\Eloquent\Role;
 use Kodeine\Acl\Models\Eloquent\User;
-
+use Auth;
+use Session;
 
 
 class HomeController extends Controller
@@ -27,7 +28,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {  
         /*********************This will insert data in permissions table*/
         // permission::insert([
@@ -53,8 +54,21 @@ class HomeController extends Controller
         /****it will assign permission and  to the user*****/
 
         //return auth()->user()->getPermissions();
-
-        return view('dashboard'); //after login by default this page is showing
+        
+        // echo 'hii'; exit();
+        $user = Auth::user();
+        //print_r($user);
+        if($user['admin']=='1')
+        {
+            //echo 'yes';
+            return view('/admin/dashboard'); //after login by default this page is showing
+        }
+        else{
+            //echo 'no';
+            return redirect('/')->with('flash_message_error','Invalid Username or Password'); //after login by default this page is showing
+        }
+        
+        
     }
     
 }

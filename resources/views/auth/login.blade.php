@@ -6,7 +6,11 @@
         <div class="col-md-8  wrap-login100">
             <div class="card">
                 <div class="login100-form-title">{{ __('Admin Login') }}</div>
-
+                @if (session('flash_message_error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('flash_message_error') }}
+                    </div>
+                @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

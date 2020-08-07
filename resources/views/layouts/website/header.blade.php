@@ -81,7 +81,13 @@
                     <div class="our-link">
                         <ul>
                             <li><a href="#"><i class="fa fa-cart-plus"></i> Cart</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                            @if(empty(Auth::check()))
+                            <li><a href="{{url('/login-register')}}"><i class="fa fa-lock"></i> Login</a></li>
+                            @else
+                            <li><a href="{{url('/account')}}"><i class="fa fa-user"></i> Account</a></li>
+
+                            <li><a href="{{url('/user-logout')}}"><i class="fa fa-lock"></i> Logout</a></li>
+                            @endif
                             <li><a href="#">Contact Us</a></li>
                         </ul>
                     </div>

@@ -71,6 +71,24 @@ Route::get('/get-product-price','Website\ProductController@getprice');
 
 //Route for Login-Register
 Route::get('/login-register','Website\\LoginController@userLogin');
+//Route for add users registration
+Route::post('/user-register','Website\LoginController@register');
+//Route for logout
+Route::get('/user-logout','Website\LoginController@logout');
+//Route for login
+Route::post('/user-login','Website\LoginController@login');
+
+//Route for MiddleWare for Front Login
+Route::group(['middleware'=>['frontlogin']],function(){
+//Route for user account
+Route::match(['get','post'],'/account','Website\LoginController@account');
+Route::match(['get','post'],'/change-password','Website\LoginController@changePassword');
+Route::match(['get','post'],'/change-address','Website\LoginController@changeAddress');
+});
+
+
+
+
 
 //Route for add to cart
 Route::match(['get','post'],'add-cart','Website\ProductController@addtoCart');

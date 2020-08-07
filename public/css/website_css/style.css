@@ -141,6 +141,18 @@
  .bootstrap-select .dropdown-toggle:focus{
      box-shadow: none !important 
 }
+#or{
+    background: #d33b33;
+    border-radius: 40px;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 75px;
+    text-align: center;
+
+  }
 /*------------------------------------------------------------------ LOADER -------------------------------------------------------------------*/
  #back-to-top {
      position: fixed;
