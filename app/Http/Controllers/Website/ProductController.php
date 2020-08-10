@@ -17,6 +17,7 @@ use Session;
 use Auth;
 
 
+
 class ProductController extends Controller
 {
     public function products()
@@ -67,7 +68,8 @@ class ProductController extends Controller
     {
         Session::forget('CouponAmount');
         Session::forget('Coupon_code');
-
+        
+        
         
         $data = $request->all();
         //print_r($data);exit();
@@ -89,11 +91,15 @@ class ProductController extends Controller
         'session_id'=>$session_id
         ])->count();
 
+        
+        
         if($countProducts>0)
         {
             return redirect()->back()->with('flash_message_error','Product already exist in cart');
         }
         else{
+            
+            
             DB::table('cart')->insert(['product_id'=>$data['product_id'],
             'product_name'=>$data['product_name'],
             'product_code'=>$data['product_code'],
@@ -105,7 +111,16 @@ class ProductController extends Controller
             'session_id'=>$session_id
             ]);
         }
-        return redirect('/cart')->with('flash_message','Product has been added in cart');
+
+        //echo Auth::guard('website')->user()->name;   
+       // exit();
+        if(!empty(Auth::guard('website')->user()->name))
+        {
+            return redirect('/cart')->with('flash_message','Product has been added in cart');
+        }
+        else{
+            return redirect('/login-register')->with('flash_message_error','Login !!');
+        }
     }
 
     public function Cart(Request $request)

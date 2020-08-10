@@ -27,7 +27,9 @@
     <link rel="stylesheet" href="{{asset('css/website_css/responsive.css')}}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{asset('css/website_css/custom.css')}}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('css/vendors/font-awesome/css/font-awesome.css')}}">
+    <link rel="stylesheet" href="{{asset('css/vendors/font-awesome/css/font-awesome.min.css')}}">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -80,10 +82,13 @@
                     </div>
                     <div class="our-link">
                         <ul>
-                            <li><a href="/"><i class="fa fa-cart-plus"></i> Cart</a></li>
-                            @if(empty(Auth::check()))
+                            <li><a href="/cart"><i class="fa fa-cart-plus"></i> Cart</a></li>
+                            <!-- {{ isset($url) ? ucwords($url) : ""}} -->
+                           
+                            @if(empty(Auth::guard('website')->user()->name))
                             <li><a href="{{url('/login-register')}}"><i class="fa fa-lock"></i> Login</a></li>
                             @else
+                            {{Auth::guard('website')->user()->name}}
                             <li><a href="{{url('/account')}}"><i class="fa fa-user"></i> Account</a></li>
 
                             <li><a href="{{url('/user-logout')}}"><i class="fa fa-lock"></i> Logout</a></li>

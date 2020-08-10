@@ -14,11 +14,9 @@ use Session;
 class HomeController extends Controller
 {
     //
+    
     public function index()
     { 
-        // $userId = Auth::id();
-        // print_r($userId);
-        
         
         $category = category::with('product')->where('status','1')->get();
         //print_r($category); exit();
@@ -28,7 +26,7 @@ class HomeController extends Controller
 
         
 
-        return view('website/home',compact('category','banners'));
+        return view('website/home',compact('category','banners'),['url' => 'website']);
     }
 
     

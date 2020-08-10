@@ -94,29 +94,30 @@
             <div class="col-lg-6 col-sm-12">
             <div class="contact-form-right">
                     <h2>Ship To !</h2>
-                    
+                   
                     <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value="{{$shippingDetails->name}}" id="shipping_name" name="shipping_name" required data-error="Please Enter Your  Name">
+                                    <input type="text" class="form-control" value="{{isset($shippingDetails->name) ? $shippingDetails->name : ''}}" id="shipping_name" name="shipping_name" required data-error="Please Enter Your  Name">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                           
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="{{isset($shippingDetails->address) ? $shippingDetails->address: ''}}" id="shipping_address" name="shipping_address" required data-error="Please Enter Your Billing Address">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value="{{$shippingDetails->address}}" id="shipping_address" name="shipping_address" required data-error="Please Enter Your Billing Address">
+                                    <input type="text" class="form-control" value="{{isset($shippingDetails->city) ? $shippingDetails->city: ''}}" id="shipping_city" name="shipping_city" required data-error="Please Enter Your City">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value="{{$shippingDetails->city}}" id="shipping_city" name="shipping_city" required data-error="Please Enter Your City">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" value="{{$shippingDetails->state}}" id="shipping_state" name="shipping_state" required data-error="Please Enter Your State">
+                                    <input type="text" class="form-control" value="{{isset($shippingDetails->state) ? $shippingDetails->state: ''}}" id="shipping_state" name="shipping_state" required data-error="Please Enter Your State">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -134,7 +135,7 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" value="{{$shippingDetails->pincode}}" id="shipping_pincode" name="shipping_pincode" required data-error="Please Enter Your Pincode">
+                                    <input type="text" class="form-control" value="{{isset($shippingDetails->pincode) ? $shippingDetails->pincode: ''}}" id="shipping_pincode" name="shipping_pincode" required data-error="Please Enter Your Pincode">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -155,7 +156,7 @@
                             </div>
 
                     </div>
-                   
+                  
                 </div>        
             </div>
 

@@ -16,18 +16,19 @@ use Illuminate\Support\Facades\Route;
 
 
 
-// Auth::routes();
-Auth::routes(['verify'=>true]);
+//Auth::routes();
+// Route::group(['middleware' => ['auth']], function() {
+    
+// });
 
+Auth::routes(['verify'=>true]);
+Route::get('/home', 'HomeController@index')->name('home');
 /***********ADMIN SECTION LINK STARTS HERE****************/
 Route::get('/admin', function () {
     //return view('welcome');
     return view('auth/login');
 });
 Route::match(['get','post'],'/logout', 'Auth\\LoginController@logout');
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::resource('admin/users', 'Admin\\usersController');
 Route::resource('admin/configuration', 'Admin\\configurationController');
@@ -93,15 +94,15 @@ Route::match(['get','post'],'/checkout','Website\LoginController@checkout');
 
 
 
-
 //Route for add to cart
 Route::match(['get','post'],'add-cart','Website\ProductController@addtoCart');
 //Route for cart
-Route::match(['get','post'],'/cart','Website\ProductController@Cart')->middleware('verified');
+Route::match(['get','post'],'/cart','Website\ProductController@Cart');//->middleware('verified')
 //Route for Delete cart
 Route::get('/cart/delete-product/{id?}','Website\\ProductController@deleteCartProduct');
 //Route for Update Quantity
 Route::get('/cart/update-quantity/{id}/{quantity}','Website\ProductController@updateCartQuantity');
 //Apply Coupon Code
 Route::post('/cart/apply-coupon','Website\ProductController@applyCoupon');
+
 /************WEBSITE SECTION LINK ENDS HERE***********************/

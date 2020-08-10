@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Kodeine\Acl\Traits\HasRole;
 use Illuminate\Notifications\Notifiable;
 
-class user extends Model
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class user extends Authenticatable
 {
     /**
      * The database table used by the model.
@@ -14,6 +16,9 @@ class user extends Model
      * @var string
      */
     use Notifiable,HasRole;
+
+    protected $guard = 'website'; //added by me
+
     protected $table = 'users';
 
     /**

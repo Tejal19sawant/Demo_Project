@@ -57,7 +57,7 @@ class HomeController extends Controller
         
         // echo 'hii'; exit();
         $user = Auth::user();
-        //print_r($user);
+        //print_r($user); exit();
         if($user['admin']=='1')
         {
             //echo 'yes';

@@ -16,8 +16,7 @@ use App\DeliveryAddress;
 class LoginController extends Controller
 {
     public function userLogin()
-    { 
-        
+    {
         return view('website/users/login_register'); 
     }
 
@@ -42,35 +41,44 @@ class LoginController extends Controller
             $user->password = bcrypt($data['password']);
             $user->save();
 
-            if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password']]))
-            {
-                Session::put('frontSession',$data['email']);
+            if(Auth::guard('website')->attempt(['email'=>$data['email'],'password'=>$data['password'],'admin'=>'0']))
+            { 
+                //echo 'yess';exit();
+                 Session::put('frontSession',$data['email']);
+                 //echo Session::get('frontSession');
+               // exit();
                 return redirect('/cart');
             }
         }
     }
 
     public function logout()
-    {
-        Session::forget('frontSession');
-        Auth::logout();
+    { 
+         Session::forget('frontSession');
+        // Auth::logout();
+        auth('website')->logout();
         return redirect('/');
     }
 
     public function login(Request $request)
     {
-        
+      
         $data = $request->all();
-        //print_r($data);exit();
+        // print_r($data);
 
-        if(Auth::attempt(['email'=>$data['email'],'password'=>$data['password'],'admin'=>0]))
-        {
+        if(Auth::guard('website')->attempt(['email'=>$data['email'],'password'=>$data['password'],'admin'=>'0']))
+        { 
+           
             Session::put('frontSession',$data['email']);
-            return redirect('/cart');
+            //echo Session::get('frontSession');
+            return redirect('/cart');  
         }
         else{
+           
             return redirect()->back()->with('flash_message_error','Invalid Username and Password !');
         }
+
+        // exit();
     }
 
     public function account(Request $request)
@@ -100,6 +108,7 @@ class LoginController extends Controller
     public function changeAddress(Request $request)
     {  
         $user_id =Auth::user()->id;
+        //echo $user_id; exit();
         $userDetails = User::find($user_id);
         //print_r($userDetails);exit();
         
@@ -127,12 +136,15 @@ class LoginController extends Controller
 
     public function checkout(Request $request)
     {
-        $user_id = Auth::user()->id;
-        $user_email =Auth::user()->email;
+        $user_id = Auth::guard('website')->user()->id;
+        //echo $user_id;
+        $user_email =Auth::guard('website')->user()->email;
+        //echo $user_email;
         $shippingDetails= DeliveryAddress::where('user_id',$user_id)->first();
+        //print_r($shippingDetails); exit();
         $userDetails = User::find($user_id);
         $country = Country::get();
-
+        //$shippingDetails =  array();
         //check if shipping address exits
         $shippingCount = DeliveryAddress::where('user_id',$user_id)->count();
         
@@ -143,6 +155,9 @@ class LoginController extends Controller
             //print_r($shippingCount1);exit();
         }
 
+        //update cart table with email
+        $session_id = Session::get('session_id');
+        DB::table('cart')->where(['session_id'=>$session_id])->update(['user_email'=>$user_email]);
         if($request->isMethod('post')){
             $data  = $request->all();
             // print_r($data);
@@ -174,7 +189,7 @@ class LoginController extends Controller
                 
 
             }
-            echo 'redirect'; exit();
+            //echo 'redirect'; exit();
         }
         return view('website/products/checkout',compact('userDetails','country','shippingDetails'));
     }

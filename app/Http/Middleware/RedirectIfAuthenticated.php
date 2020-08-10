@@ -19,9 +19,25 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+           
+            if ($guard == "web") {
+               
+                return redirect(RouteServiceProvider::HOME);
+            }
+            
         }
-
+        else if ($guard == "website" && Auth::guard($guard)->check()) {
+            
+            return redirect('/cart');
+        }
+        
+        // if (Auth::guard($guard)->check()) {
+        //     if ($guard === 'website') {
+        //         echo 'yes';
+        //         return redirect()->route('/cart');
+        //     }
+        //     return redirect()->route('/home');
+        // }
         return $next($request);
     }
 }
